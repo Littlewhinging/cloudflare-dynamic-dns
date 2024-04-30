@@ -5,7 +5,6 @@ from datetime import datetime
 import time
 import requests
 
-
 def intput(text):
   textvalue = input(text)
   try:
@@ -53,7 +52,6 @@ def log(text):
 		f.write(info + "\n")
 
 def main():
-	global cf
 	use_config = os.path.exists("cfd-config.json")
 
 	if not use_config:
@@ -113,7 +111,6 @@ def main():
 
 	ip = "Unknown"
 	while True:
-		time.sleep(delay)
 		new_ip = requests.get("https://4.ident.me").text
 
 		if ip != new_ip:
@@ -131,6 +128,8 @@ def main():
 						dns_record["content"] = ip
 						cf.zones.dns_records.put(zoneId, dns_record["id"], data=dns_record)
 						log(f"[INFO] Updated record for {dns_record['name']}")
+
+		time.sleep(delay)
 
 
 if __name__ == '__main__':
