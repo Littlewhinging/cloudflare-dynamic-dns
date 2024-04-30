@@ -3,3 +3,4 @@ venv
 cfd-config.json
 */__pycache__
 *.egg-info
+dist
