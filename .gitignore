@@ -1,6 +1,8 @@
 log.txt
 venv
-cfd-config.json
+config.json
+latest.log
 */__pycache__
 *.egg-info
 dist
+.vscode
