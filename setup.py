@@ -1,9 +1,14 @@
 from setuptools import setup
 
+with open("readme.md","r") as f:
+	description = f.read()
+
 setup(
 	name='cloudflare-dynamic-dns-client',
 	description='Allows selfhosting on cloudflare with a dynamic ip address',
-	version='0.1.2',
+	long_description=description,
+	long_description_content_type='text/markdown',
+	version='0.2.1',
 	packages=['cloudflare_dynamic_dns'],
 	author="Littlewhinging",
 	install_requires=[
