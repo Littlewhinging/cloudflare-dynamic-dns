@@ -4,6 +4,7 @@ import time
 import requests
 import logging
 import CloudFlare, CloudFlare.exceptions
+import sys
 
 dirpath = os.path.dirname(os.path.realpath(__file__))
 
@@ -42,8 +43,21 @@ def multi_menu(text: str, items: list[str]) -> list[int]:
 
 	return all_selected
 
+def get_external_ip() -> str:
+	response = requests.get("https://4.ident.me")
+	if response.status_code == 200:
+		return response.text
+	response = requests.get("https://4.tnedi.me/")
+	if response.status_code == 200:
+		return response.text
+	return ""
+
 def main() -> None:
-	if not os.path.exists(os.path.join(dirpath, "config.json")):
+	if len(sys.argv) > 1 and sys.argv[1] == "logs":
+		print(dirpath)
+		return
+
+	if not os.path.exists(os.path.join(dirpath, "config.json")) or (len(sys.argv) > 1 and  sys.argv[1] == "config"):
 		token = input("API Token: ")
 		try:
 			cf = CloudFlare.CloudFlare(token=token)
@@ -68,7 +82,7 @@ def main() -> None:
 	
 			dns_records += temp_dns_records
 
-		max_name_length = max([len(i["name"]) for i in dns_records])
+		max_name_length = max(map(lambda x: len(x["name"]), dns_records))
 		selected = multi_menu("Select an option: ",[i["name"] + (" " * (max_name_length - len(i["name"]))) + "\t" + i["content"] for i in dns_records])
 
 		selected_dns_records = [dns_records[i] for i in selected]
@@ -103,7 +117,11 @@ def main() -> None:
 	ip = ""
 	first = True
 	while True:
-		new_ip = requests.get("https://4.ident.me").text
+		new_ip = get_external_ip()
+		if new_ip == "":
+			logger.error("Failed to get external ip, check internet connection")
+			time.sleep(delay * 5)
+			continue
 
 		if ip != new_ip:
 			if first:

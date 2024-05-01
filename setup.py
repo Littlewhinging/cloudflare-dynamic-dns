@@ -8,7 +8,7 @@ setup(
 	author="Littlewhinging",
 	install_requires=[
 		"cloudflare==2.11.1",
-		"equests==2.31.0"
+		"requests==2.31.0"
 	],
 	entry_points={
 		'console_scripts': [
