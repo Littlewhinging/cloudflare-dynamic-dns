@@ -21,13 +21,17 @@ pip install cloudflare-dynamic-dns-client
 
 To use Cloudflare Dynamic DNS, follow these steps:
 
-**Configuration**: Running `cloudflare-dynamic-dns` for the first time will allow you to enter an API key and select the records you want to update.
+### Configuration 
+Running `cloudflare-dynamic-dns` for the first time will allow you to enter an API key and select the records you want to update.
 
-**Running**: Once configured, running `cloudflare-dynamic-dns` again will resume monitoring for ip changes and updating cloudflare records.
+### Running 
+Once configured, running `cloudflare-dynamic-dns` again will resume monitoring for ip changes and updating cloudflare records.
 
-**Editing Configuration**: Running `cloudflare-dynamic-dns config` will allow you to repeat to configuration step.
+### Editing Configuration
+Running `cloudflare-dynamic-dns config` will allow you to repeat to configuration step.
 
-**Logs** Running `cloudflare-dynamic-dns logs` will output the directory containing the latest log files.
+### Logs
+Running `cloudflare-dynamic-dns logs` will output the directory containing the latest log files.
 
 ## Contributing
 
