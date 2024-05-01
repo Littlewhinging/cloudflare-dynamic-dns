@@ -1,14 +1,19 @@
 from setuptools import setup
 
-with open("readme.md","r") as f:
-	description = f.read()
+try:
+	with open("readme.md","r") as f:
+		description = f.read()
+except:
+	description = 'Allows selfhosting on cloudflare with a dynamic ip address'
 
 setup(
 	name='cloudflare-dynamic-dns-client',
 	description='Allows selfhosting on cloudflare with a dynamic ip address',
 	long_description=description,
 	long_description_content_type='text/markdown',
-	version='0.2.1',
+	version='0.2.3',
+	license='MIT',
+	url='https://github.com/Littlewhinging/cloudflare-dynamic-dns',
 	packages=['cloudflare_dynamic_dns'],
 	author="Littlewhinging",
 	install_requires=[
